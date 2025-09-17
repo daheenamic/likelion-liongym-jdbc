@@ -8,6 +8,8 @@ import trainer.dao.TrainerDAOImpl;
 import trainer.dto.TrainerDTO;
 import util.io.In;
 
+import java.util.List;
+
 public class MemberController {
     public void execute() {
         MemberDAO memberDAO = new MemberDAOImpl();
@@ -21,21 +23,26 @@ public class MemberController {
             System.out.println("[5]PT등록  [6]PT사용  [0]이전메뉴");
             System.out.println("========================================");
             System.out.print("▶︎ 메뉴를 선택하세요: ");
-            System.out.println();
 
             switch (Integer.parseInt(In.getString())) {
                 case 1:
+                    List<MemberDTO> memberList = memberDAO.list();
+
                     System.out.println("==================[ 회원목록 ]==================");
                     System.out.println("ID  |  이름  |    연락처     | 담당트레이너 | 남은수업");
-                    for (MemberDTO m : memberDAO.list()) {
-                        TrainerDTO t = trainerDAO.view(m.getTrainerId());
-                        String trainerNm = t.getName() != null ? t.getName() : "   -   ";
-                        System.out.println(m.getId() + "  | "
-                                + m.getName() + " | "
-                                + m.getPhone() + " | "
-                                + trainerNm + "  | "
-                                + m.getSession() + "회");
+
+                    if ( memberList != null ) {
+                        for (MemberDTO m : memberDAO.list()) {
+                            System.out.println(m.getId() + "  | "
+                                    + m.getName() + " | "
+                                    + m.getPhone() + " | "
+                                    + m.getTrainerNm() + "  | "
+                                    + m.getSession() + "회");
+                        }
+                    } else {
+                        System.out.println("====== [ 등록된 회원이 없습니다. ] ======");
                     }
+
                     System.out.println();
                     break;
                 case 2:
@@ -95,6 +102,12 @@ public class MemberController {
                     System.out.println();
                     break;
                 case 5:
+                    System.out.println("ID  |  이름  |    연락처     ");
+                    for (MemberDTO m : memberDAO.list()) {
+                        System.out.println(m.getId() + "  | "
+                                + m.getName() + " | "
+                                + m.getPhone() + " | ");
+                    }
                     System.out.println("▶︎ PT 등록 정보를 입력 해 주세요.");
                     MemberDTO ptMember = new MemberDTO();
                     System.out.print(" - 회원ID: ");
@@ -111,7 +124,38 @@ public class MemberController {
                     }
                     break;
                 case 6:
-                    System.out.println("WIP");
+                    System.out.println("ID  |  이름  |    연락처     ");
+
+                    for (MemberDTO m : memberDAO.list()) {
+                        System.out.println(m.getId() + "  | "
+                                + m.getName() + " | "
+                                + m.getPhone() + " | ");
+                    }
+
+                    System.out.print("▶︎ 수업을 등록할 회원을 입력 해 주세요: ");
+                    MemberDTO useMember = memberDAO.view(Integer.parseInt(In.getString()));
+
+                    System.out.println("==========[ 회원정보 ]==========");
+                    System.out.println(" - 회원 이름: " + useMember.getName());
+                    System.out.println(" - 남은 PT 횟수: " + useMember.getSession());
+                    System.out.println(" - 담당 트레이너: " + useMember.getTrainerNm());
+                    System.out.print(" ▶︎ 사용횟수를 입력 하세요: ");
+
+                    int orgSession = useMember.getSession();
+                    int useSession = Integer.parseInt(In.getString());
+                    useMember.setSession(orgSession - useSession);
+                    result = memberDAO.usePt(useMember);
+
+                    TrainerDTO useTrainer = trainerDAO.view(useMember.getTrainerId());
+                    int orgLessons = useTrainer.getLessons();
+                    useTrainer.setLessons(orgLessons + useSession);
+                    result += trainerDAO.usePt(useTrainer);
+
+                    if ( result > 0 ) {
+                        System.out.println("✅ PT가 사용 되었습니다.");
+                    } else {
+                        System.out.println("PT가 사용되지 않았습니다. 다시 시도 해 주세요.");
+                    }
                     break;
                 case 0:
                     return;

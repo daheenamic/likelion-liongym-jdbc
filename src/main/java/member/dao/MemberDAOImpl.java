@@ -16,9 +16,11 @@ public class MemberDAOImpl implements MemberDAO {
     public List<MemberDTO> list() {
         List<MemberDTO> memberList = new ArrayList<>();
 
-        String sql = " SELECT ID, NAME, PHONE, TRAINER_ID, SESSION, REG_DATE "
-                   + " FROM MEMBERS "
-                   + " ORDER BY ID ";
+        String sql = " SELECT M.ID, M.NAME, M.PHONE, M.TRAINER_ID, T.NAME AS TRAINER_NM, M.SESSION, M.REG_DATE  "
+                   + " FROM MEMBERS M "
+                   + " LEFT OUTER JOIN TRAINERS T "
+                   + " ON M.TRAINER_ID = T.ID "
+                   + " ORDER BY M.ID ";
 
         try (
                 Connection conn = DBUtil.getConnection();
@@ -31,6 +33,7 @@ public class MemberDAOImpl implements MemberDAO {
                 memberDTO.setName(rs.getString("NAME"));
                 memberDTO.setPhone(rs.getString("PHONE"));
                 memberDTO.setTrainerId(rs.getInt("TRAINER_ID"));
+                memberDTO.setTrainerNm(rs.getString("TRAINER_NM"));
                 memberDTO.setSession(rs.getInt("SESSION"));
                 memberDTO.setRegDate(rs.getDate("REG_DATE"));
                 memberList.add(memberDTO);
@@ -45,9 +48,11 @@ public class MemberDAOImpl implements MemberDAO {
     public MemberDTO view(int id) {
         MemberDTO memberDTO = new MemberDTO();
 
-        String sql = " SELECT ID, NAME, PHONE, TRAINER_ID, SESSION, REG_DATE "
-                   + " FROM MEMBERS "
-                   + " WHERE ID = ? ";
+        String sql = " SELECT M.ID, M.NAME, M.PHONE, M.TRAINER_ID, T.NAME AS TRAINER_NM, M.SESSION, M.REG_DATE  "
+                   + " FROM MEMBERS M "
+                   + " LEFT OUTER JOIN TRAINERS T "
+                   + " ON M.TRAINER_ID = T.ID "
+                   + " WHERE M.ID = ? ";
 
         ResultSet rs = null;
 
@@ -63,6 +68,7 @@ public class MemberDAOImpl implements MemberDAO {
                 memberDTO.setName(rs.getString("NAME"));
                 memberDTO.setPhone(rs.getString("PHONE"));
                 memberDTO.setTrainerId(rs.getInt("TRAINER_ID"));
+                memberDTO.setTrainerNm(rs.getString("TRAINER_NM"));
                 memberDTO.setSession(rs.getInt("SESSION"));
                 memberDTO.setRegDate(rs.getDate("REG_DATE"));
             }

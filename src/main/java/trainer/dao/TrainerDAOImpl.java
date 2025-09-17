@@ -148,7 +148,7 @@ public class TrainerDAOImpl implements TrainerDAO{
     @Override
     public Integer usePt(TrainerDTO trainerDTO) {
         int result = 0;
-        String sql = " UPDATE TRAINER SET LESSONES = ? "
+        String sql = " UPDATE TRAINERS SET LESSONS = ? "
                    + " WHERE ID = ? " ;
 
         try (

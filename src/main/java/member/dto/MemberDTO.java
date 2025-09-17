@@ -7,6 +7,7 @@ public class MemberDTO {
     private String name;
     private String phone;
     private int trainerId;
+    private String trainerNm;
     private int session;
     private Date regDate;
 
@@ -40,6 +41,14 @@ public class MemberDTO {
 
     public void setTrainerId(int trainerId) {
         this.trainerId = trainerId;
+    }
+
+    public String getTrainerNm() {
+        return trainerNm;
+    }
+
+    public void setTrainerNm(String trainerNm) {
+        this.trainerNm = trainerNm;
     }
 
     public int getSession() {
