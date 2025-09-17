@@ -1,10 +1,10 @@
 package member.controller;
 
-import member.dao.MemberDAO;
-import member.dao.MemberDAOImpl;
+import member.repository.MemberDAO;
+import member.repository.MemberDAOImpl;
 import member.dto.MemberDTO;
-import trainer.dao.TrainerDAO;
-import trainer.dao.TrainerDAOImpl;
+import trainer.repository.TrainerDAO;
+import trainer.repository.TrainerDAOImpl;
 import trainer.dto.TrainerDTO;
 import util.io.In;
 
@@ -121,6 +121,7 @@ public class MemberController {
                     MemberDTO ptMember = new MemberDTO();
                     System.out.print(" - 회원ID: ");
                     ptMember.setId(Integer.parseInt(In.getString()));
+                    // TODO: 트레이너 목록도 보여주기
                     System.out.print(" - 트레이너ID: ");
                     ptMember.setTrainerId(Integer.parseInt(In.getString()));
                     System.out.print(" - 등록횟수: ");

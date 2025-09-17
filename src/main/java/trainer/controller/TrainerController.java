@@ -1,10 +1,10 @@
 package trainer.controller;
 
-import member.dao.MemberDAO;
-import member.dao.MemberDAOImpl;
+import member.repository.MemberDAO;
+import member.repository.MemberDAOImpl;
 import member.dto.MemberDTO;
-import trainer.dao.TrainerDAO;
-import trainer.dao.TrainerDAOImpl;
+import trainer.repository.TrainerDAO;
+import trainer.repository.TrainerDAOImpl;
 import trainer.dto.TrainerDTO;
 import util.NumberFormatUtil;
 import util.io.In;

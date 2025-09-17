@@ -1,4 +1,4 @@
-package trainer.dao;
+package trainer.repository;
 
 import trainer.dto.TrainerDTO;
 import util.db.DBUtil;

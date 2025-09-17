@@ -1,4 +1,4 @@
-package member.dao;
+package member.repository;
 
 import member.dto.MemberDTO;
 
