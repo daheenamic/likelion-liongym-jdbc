@@ -103,7 +103,7 @@ public class TrainerDAOImpl implements TrainerDAO{
     @Override
     public Integer update(TrainerDTO trainerDTO) {
         int result = 0;
-        String sql = " UPDATE MEMBERS SET "
+        String sql = " UPDATE TRAINERS SET "
                    + " NAME = ?, "
                    + " PHONE = ?, "
                    + " BASE_SALARY = ?, "
@@ -118,6 +118,7 @@ public class TrainerDAOImpl implements TrainerDAO{
             ps.setString(2, trainerDTO.getPhone());
             ps.setInt(3, trainerDTO.getBaseSalary());
             ps.setInt(4, trainerDTO.getBonus());
+            ps.setInt(5, trainerDTO.getId());
 
             result = ps.executeUpdate();
         } catch (SQLException e) {

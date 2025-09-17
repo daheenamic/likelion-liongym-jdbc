@@ -16,4 +16,5 @@ public interface TrainerDAO {
     public Integer delete(TrainerDTO trainerDTO);
 
     public Integer usePt(TrainerDTO trainerDTO);
+
 }

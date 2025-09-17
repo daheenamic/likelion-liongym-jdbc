@@ -45,6 +45,46 @@ public class MemberDAOImpl implements MemberDAO {
     }
 
     @Override
+    public List<MemberDTO> listByTrainerId(int id) {
+        List<MemberDTO> memberList = new ArrayList<>();
+
+        String sql = " SELECT M.ID, M.NAME, M.PHONE, M.TRAINER_ID, T.NAME AS TRAINER_NM, M.SESSION, M.REG_DATE  "
+                   + " FROM MEMBERS M "
+                   + " LEFT OUTER JOIN TRAINERS T "
+                   + " ON M.TRAINER_ID = T.ID "
+                   + " WHERE M.TRAINER_ID = ? "
+                   + " ORDER BY M.ID ";
+
+        ResultSet rs = null;
+
+        try (
+                Connection conn = DBUtil.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql);
+        ) {
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                MemberDTO memberDTO = new MemberDTO();
+                memberDTO.setId(rs.getInt("ID"));
+                memberDTO.setName(rs.getString("NAME"));
+                memberDTO.setPhone(rs.getString("PHONE"));
+                memberDTO.setTrainerId(rs.getInt("TRAINER_ID"));
+                memberDTO.setTrainerNm(rs.getString("TRAINER_NM"));
+                memberDTO.setSession(rs.getInt("SESSION"));
+                memberDTO.setRegDate(rs.getDate("REG_DATE"));
+                memberList.add(memberDTO);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            DBUtil.close(rs);
+        }
+
+        return memberList;
+    }
+
+    @Override
     public MemberDTO view(int id) {
         MemberDTO memberDTO = new MemberDTO();
 

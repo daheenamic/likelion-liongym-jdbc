@@ -8,6 +8,8 @@ public interface MemberDAO {
 
     public List<MemberDTO> list();
 
+    public List<MemberDTO> listByTrainerId(int id);
+
     public MemberDTO view(int id);
 
     public Integer insert(MemberDTO memberDTO);

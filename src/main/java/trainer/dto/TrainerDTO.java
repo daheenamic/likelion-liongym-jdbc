@@ -1,5 +1,6 @@
 package trainer.dto;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class TrainerDTO {
@@ -65,6 +66,10 @@ public class TrainerDTO {
 
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
+    }
+
+    public int calculatePay() {
+        return baseSalary + (lessons * bonus);
     }
 
     @Override

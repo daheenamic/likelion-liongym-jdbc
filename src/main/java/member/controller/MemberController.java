@@ -31,12 +31,13 @@ public class MemberController {
                     System.out.println("==================[ 회원목록 ]==================");
                     System.out.println("ID  |  이름  |    연락처     | 담당트레이너 | 남은수업");
 
-                    if ( memberList != null ) {
+                    if ( memberList != null && !memberList.isEmpty() ) {
                         for (MemberDTO m : memberDAO.list()) {
+                            String trainerNm = m.getTrainerNm() != null ? m.getTrainerNm() : "   -   ";
                             System.out.println(m.getId() + "  | "
                                     + m.getName() + " | "
-                                    + m.getPhone() + " | "
-                                    + m.getTrainerNm() + "  | "
+                                    + m.getPhone() + " |  "
+                                    + trainerNm + "  | "
                                     + m.getSession() + "회");
                         }
                     } else {
@@ -61,12 +62,13 @@ public class MemberController {
                     System.out.println();
                     break;
                 case 3:
-                    System.out.println("ID  |  이름  |    연락처     ");
+                    System.out.println("ID  |  이름  |    연락처");
                     for (MemberDTO m : memberDAO.list()) {
                         System.out.println(m.getId() + "  | "
                                 + m.getName() + " | "
                                 + m.getPhone() + " | ");
                     }
+
                     System.out.println();
                     MemberDTO updateMember = new MemberDTO();
                     System.out.print("▶︎ 수정하실 회원의 ID를 선택 해 주세요: ");
@@ -83,7 +85,7 @@ public class MemberController {
                     }
                     break;
                 case 4:
-                    System.out.println("ID  |  이름  |    연락처     ");
+                    System.out.println("ID  |  이름  |    연락처");
                     for (MemberDTO m : memberDAO.list()) {
                         System.out.println(m.getId() + "  | "
                                 + m.getName() + " | "
@@ -95,14 +97,14 @@ public class MemberController {
                     deleteMember.setId(Integer.parseInt(In.getString()));
                     result = memberDAO.delete(deleteMember);
                     if ( result == 1 ) {
-                        System.out.println("✅ " + deleteMember.getId() + "번 회원님의 정보가 삭제되었습니다..");
+                        System.out.println("✅ " + deleteMember.getId() + "번 회원님의 정보가 삭제되었습니다.");
                     } else {
                         System.out.println("정보가 삭제되지 않았습니다. 다시 시도 해 주세요.");
                     }
                     System.out.println();
                     break;
                 case 5:
-                    System.out.println("ID  |  이름  |    연락처     ");
+                    System.out.println("ID  |  이름  |    연락처");
                     for (MemberDTO m : memberDAO.list()) {
                         System.out.println(m.getId() + "  | "
                                 + m.getName() + " | "
@@ -124,7 +126,7 @@ public class MemberController {
                     }
                     break;
                 case 6:
-                    System.out.println("ID  |  이름  |    연락처     ");
+                    System.out.println("ID  |  이름  |    연락처    | ");
 
                     for (MemberDTO m : memberDAO.list()) {
                         System.out.println(m.getId() + "  | "
@@ -132,7 +134,7 @@ public class MemberController {
                                 + m.getPhone() + " | ");
                     }
 
-                    System.out.print("▶︎ 수업을 등록할 회원을 입력 해 주세요: ");
+                    System.out.print("▶︎ 수업을 진행한 회원을 입력 해 주세요: ");
                     MemberDTO useMember = memberDAO.view(Integer.parseInt(In.getString()));
 
                     System.out.println("==========[ 회원정보 ]==========");
