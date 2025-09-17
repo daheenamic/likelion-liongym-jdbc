@@ -4,17 +4,22 @@ import trainer.dto.TrainerDTO;
 
 import java.util.List;
 
+/**
+ * 트레이너관리 DAO 인터페이스
+ * @author dahee
+ * @since 25.09.17
+ */
 public interface TrainerDAO {
-    public List<TrainerDTO> list();
+    List<TrainerDTO> list();
 
-    public TrainerDTO view(int id);
+    TrainerDTO view(int id);
 
-    public Integer insert(TrainerDTO trainerDTO);
+    Integer insert(TrainerDTO trainerDTO);
 
-    public Integer update(TrainerDTO trainerDTO);
+    Integer update(TrainerDTO trainerDTO);
 
-    public Integer delete(TrainerDTO trainerDTO);
+    Integer delete(TrainerDTO trainerDTO);
 
-    public Integer usePt(TrainerDTO trainerDTO);
+    Integer usePt(TrainerDTO trainerDTO);
 
 }

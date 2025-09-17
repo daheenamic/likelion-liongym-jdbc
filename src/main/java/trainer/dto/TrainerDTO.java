@@ -1,8 +1,12 @@
 package trainer.dto;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 
+/**
+ * 트레이너관리 DTO
+ * @author dahee
+ * @since 25.09.17
+ */
 public class TrainerDTO {
     private int id;
     private String name;

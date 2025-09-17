@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * 입력 Util
  * @author dahee
- * @since 25.08.30
+ * @since 25.09.17
  */
 public class In {
     private static Scanner scanner = new Scanner(System.in);

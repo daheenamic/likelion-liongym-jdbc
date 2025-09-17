@@ -11,6 +11,11 @@ import util.io.In;
 
 import java.util.List;
 
+/**
+ * 트레이너관리 Controller
+ * @author dahee
+ * @since 25.09.17
+ */
 public class TrainerController {
     public void execute() {
         MemberDAO memberDAO = new MemberDAOImpl();

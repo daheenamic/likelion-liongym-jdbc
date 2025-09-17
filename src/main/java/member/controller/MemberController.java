@@ -10,11 +10,18 @@ import util.io.In;
 
 import java.util.List;
 
+/**
+ * 회원관리 Controller
+ * @author dahee
+ * @since 25.09.17
+ */
 public class MemberController {
     public void execute() {
         MemberDAO memberDAO = new MemberDAOImpl();
         TrainerDAO trainerDAO = new TrainerDAOImpl();
         int result = 0;
+
+        // TODO: 등록, 수정 Validate 로직 만들기
 
         while (true) {
             System.out.println();
@@ -119,6 +126,7 @@ public class MemberController {
                     System.out.print(" - 등록횟수: ");
                     ptMember.setSession(Integer.parseInt(In.getString()));
                     result = memberDAO.buyPt(ptMember);
+
                     if ( result == 1 ) {
                         System.out.println("✅ PT가 등록되었습니다.");
                     } else {
@@ -143,6 +151,7 @@ public class MemberController {
                     System.out.println(" - 담당 트레이너: " + useMember.getTrainerNm());
                     System.out.print(" ▶︎ 사용횟수를 입력 하세요: ");
 
+                    // TODO Service 만들어서 PT사용 로직 하나로 묶기
                     int orgSession = useMember.getSession();
                     int useSession = Integer.parseInt(In.getString());
                     useMember.setSession(orgSession - useSession);

@@ -6,6 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * DB 접속 공통 유틸
+ * @author dahee
+ * @since 25.09.17
+ */
 public class DBUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/liongym";
     private static final String ID = "lion";

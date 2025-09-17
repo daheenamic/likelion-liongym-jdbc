@@ -10,6 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 회원관리 DAO 구현체
+ * @author dahee
+ * @since 25.09.17
+ */
 public class MemberDAOImpl implements MemberDAO {
 
     @Override

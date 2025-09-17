@@ -2,6 +2,11 @@ package member.dto;
 
 import java.util.Date;
 
+/**
+ * 회원관리 DTO
+ * @author dahee
+ * @since 25.09.17
+ */
 public class MemberDTO {
     private int id;
     private String name;

@@ -10,6 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 트레이너관리 DAO 구현체
+ * @author dahee
+ * @since 25.09.17
+ */
 public class TrainerDAOImpl implements TrainerDAO{
     @Override
     public List<TrainerDTO> list() {

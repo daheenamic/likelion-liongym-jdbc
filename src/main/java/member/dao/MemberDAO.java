@@ -4,21 +4,26 @@ import member.dto.MemberDTO;
 
 import java.util.List;
 
+/**
+ * 회원관리 DAO 인터페이스
+ * @author dahee
+ * @since 25.09.17
+ */
 public interface MemberDAO {
 
-    public List<MemberDTO> list();
+    List<MemberDTO> list();
 
-    public List<MemberDTO> listByTrainerId(int id);
+    List<MemberDTO> listByTrainerId(int id);
 
-    public MemberDTO view(int id);
+    MemberDTO view(int id);
 
-    public Integer insert(MemberDTO memberDTO);
+    Integer insert(MemberDTO memberDTO);
 
-    public Integer update(MemberDTO memberDTO);
+    Integer update(MemberDTO memberDTO);
 
-    public Integer delete(MemberDTO memberDTO);
+    Integer delete(MemberDTO memberDTO);
 
-    public Integer buyPt(MemberDTO memberDTO);
+    Integer buyPt(MemberDTO memberDTO);
 
-    public Integer usePt(MemberDTO memberDTO);
+    Integer usePt(MemberDTO memberDTO);
 }
